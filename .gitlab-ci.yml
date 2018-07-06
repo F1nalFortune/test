@@ -1,0 +1,19 @@
+image: gitlogo:5000/logo-php-runner
+
+stages:
+  - test
+
+lint-php:
+  stage: test
+  allow_failure: no
+  tags:
+    - "gitlogo-php"
+  except:
+    - master
+  variables:
+    GIT_STRATEGY: fetch
+  when: on_success
+  script:
+    - "echo $(pwd)"
+    - "find . -type f -name '*.php' -exec php -l {} \\; | (! grep -v \"No syntax errors detected\" )"
+    - "echo Done"
