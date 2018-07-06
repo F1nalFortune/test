@@ -46,7 +46,7 @@ $addProduct_active = $_POST["addProduct_active"];
 $sql = "SELECT * FROM products WHERE id =". $ID;
 $result = $conn->query($sql);
 
-echo "Result {$result}"
+echo "Result {$result}";
 
 $sql = "SELECT * FROM logointerndb.products";
 $result = $conn->query($sql);
