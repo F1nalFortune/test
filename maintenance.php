@@ -43,20 +43,12 @@ $addProduct_active = $_POST["addProduct_active"];
 //local-mysql/phpmyadmin
 //developer + password
 
-$sql = "SELECT * FROM products WHERE id =". $ID;
+
+$sql = "SELECT * FROM logointerndb.products WHERE id =". $ID;
 $result = $conn->query($sql);
-
-echo "Result {$result}";
-
-$sql = "SELECT * FROM logointerndb.products";
-$result = $conn->query($sql);
-
-echo "<br/>Total products: $result->num_rows <br/>";
-
-
-
 //display the records
 if ($result->num_rows > 0) {
+	echo "<br/>Total products: $result->num_rows <br/>";
 	echo "<ol type='1'>";
 	while($row = $result->fetch_assoc()){
 		echo "<li>(EDIT)(X)ID: ". $row["ID"]. "-----". "SKU: ". $row["sku"]. "-----". "Prod:". $row["product_desc"]. "</li>";
@@ -68,6 +60,26 @@ if ($result->num_rows > 0) {
 	echo "0 results";
 	echo "<a href='/internDB/productMaintenance.php'>Back</a>";
 }
+
+
+
+
+
+
+
+// //display the records
+// if ($result->num_rows > 0) {
+// 	echo "<ol type='1'>";
+// 	while($row = $result->fetch_assoc()){
+// 		echo "<li>(EDIT)(X)ID: ". $row["ID"]. "-----". "SKU: ". $row["sku"]. "-----". "Prod:". $row["product_desc"]. "</li>";
+//
+// 	}
+// 	echo "</ol>";
+// 	echo "<a href='/internDB/productMaintenance.php'>Back</a>";
+// } else {
+// 	echo "0 results";
+// 	echo "<a href='/internDB/productMaintenance.php'>Back</a>";
+// }
 
 $conn->Close();
 ?>
